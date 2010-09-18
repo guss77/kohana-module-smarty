@@ -26,7 +26,7 @@
  * @param resort    default: false
  */
 
-function smarty_block_report($params, $content, &$smarty, &$repeat)
+function smarty_block_report($params, $content, $smarty, &$repeat, $template)
 {
 	$_params =& smarty_get_current_plugin_params($smarty);
 
@@ -178,7 +178,7 @@ function smarty_block_report__process_next(&$smarty, &$repeat, &$params)
 	}
 
 	if (isset($record['curr'])) {
-		$smarty->assign($record['name'], $record['curr']);
+		$template->assign($record['name'], $record['curr']);
 	}
 }
 

@@ -22,7 +22,7 @@
  *
  * @param group     default: null
  */
-function smarty_block_report_footer($params, $content, &$smarty, &$repeat)
+function smarty_block_report_footer($params, $content, $smarty, &$repeat, $template)
 {
 	$_parent_params =& smarty_get_parent_plugin_params($smarty, 'report');
 
@@ -32,7 +32,7 @@ function smarty_block_report_footer($params, $content, &$smarty, &$repeat)
 		   // report footer
 			if ($_parent_params['report']['record']['last']) {
 				foreach ($_parent_params['report']['stats'] as $stat_type=>$stat) {
-					$smarty->assign($stat_type, $stat);
+					$template->assign($stat_type, $stat);
 				}
 			}
 
@@ -43,7 +43,7 @@ function smarty_block_report_footer($params, $content, &$smarty, &$repeat)
 			}
 			if ($_parent_params['report']['group'][$params['group']]['last']) {
 				foreach ($_parent_params['report']['group'][$params['group']]['stats'] as $stat_type=>$stat) {
-					$smarty->assign($stat_type, $stat);
+					$template->assign($stat_type, $stat);
 				}
 			}
 		}

@@ -13,7 +13,7 @@
  * @return string|null if the assign parameter is passed, Smarty assigns the
  *                     result to a template variable
  */
-function smarty_function_Kohana_profile($params, &$smarty) {
+function smarty_function_Kohana_profile($params, $smarty, $template) {
 	$groups = Profiler::groups();
 	$profile = array();
 	foreach ( $groups as $group_name => $group ) {

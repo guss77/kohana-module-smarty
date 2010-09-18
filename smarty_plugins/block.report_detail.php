@@ -19,7 +19,7 @@
  *
  * @thanks      messju mohr, sophistry
  */
-function smarty_block_report_detail($params, $content, &$smarty, &$repeat)
+function smarty_block_report_detail($params, $content, $smarty, &$repeat, $template)
 {
 	$_parent_params =& smarty_get_parent_plugin_params($smarty, 'report');
 

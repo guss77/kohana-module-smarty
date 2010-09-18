@@ -16,7 +16,7 @@
  * @param  Smarty
  * @return string  The translation (and substitution) of the string
  */
-function smarty_function___($params, &$smarty) {
+function smarty_function___($params, $smarty, $template) {
 	$string = $values = $lang = null;
 	foreach ( $params as $key => $val ) {
 		if ( $key == 't' ) {

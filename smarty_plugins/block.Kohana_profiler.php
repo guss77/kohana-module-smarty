@@ -26,13 +26,13 @@
  * @param resort    default: false
  */
 
-function smarty_block_Kohana_profiler($params, $content, &$smarty, &$repeat) {
+function smarty_block_Kohana_profiler($params, $content, $smarty, &$repeat, $template) {
 static $stack = array();
 static $profiles = array();
 static $firsttime = true;
 
 	if ( $firsttime ) {
-		$smarty->assign_by_ref('Kohana_profiles', $profiles);
+		$template->assignByRef('Kohana_profiles', $profiles);
 		$firsttime = false;
 	}
 
@@ -57,7 +57,7 @@ static $firsttime = true;
 			$total[2] = strlen($content);
 			$total[3] = microtime(true) - KOHANA_START_TIME;
 			$total[4] = memory_get_usage();
-			$smarty->assign('Kohana_profiler', $total);
+			$template->assign('Kohana_profiler', $total);
 
 			if ( isset($profiles[$name]) ) {
 				$profiles[$name][0] += $total[0];
@@ -72,7 +72,7 @@ static $firsttime = true;
 				microtime(true) - KOHANA_START_TIME,
 				memory_get_usage(),
 			);
-			$smarty->assign('Kohana_profiler', $total);
+			$template->assign('Kohana_profiler', $total);
 		}
 
 		return $content;

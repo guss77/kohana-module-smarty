@@ -33,9 +33,9 @@ return array (
 		// TODO need to create some useful Kohana plugins. Investigate whether
 		// pre-registering gives a meaningful speed gain.
 		'plugins_dir'     =>  array(
-			APPPATH.'smarty_plugins',
-			MODPATH.'smarty/smarty_plugins',
-			'plugins',
+			APPPATH.'smarty_plugins/',
+			MODPATH.'smarty/smarty_plugins/',
+			'plugins/',
 		),
 
 		// If you want to use smarty config files, put them in this place
