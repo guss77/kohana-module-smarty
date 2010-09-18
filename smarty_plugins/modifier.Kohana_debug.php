@@ -21,5 +21,5 @@
  * @return string
  */
 function smarty_modifier_Kohana_debug($var) {
-  return Kohana::debug($var);
+	return Kohana::debug($var);
 }

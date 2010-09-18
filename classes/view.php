@@ -29,12 +29,12 @@ protected $_default_renderer = 'parent';
 protected $_config = array();
 
 public function __construct($file = null, array $data = null) {
-  $token = Kohana::$profiling ? Profiler::start('renderer', 'new kohana view') : false;
+	$token = Kohana::$profiling ? Profiler::start('renderer', 'new kohana view') : false;
 
-  $this->_config = Kohana::config('render');
+	$this->_config = Kohana::config('render');
 
-  parent::__construct($file, $data);
-  $token ? Profiler::stop($token) : null;
+	parent::__construct($file, $data);
+	$token ? Profiler::stop($token) : null;
 
 }
 
@@ -47,48 +47,48 @@ public function __construct($file = null, array $data = null) {
  */
 public function set_filename($file) {
 
-  // first extract the renderer, if any
-  $pos = strpos($file, ':');
-  if ( $pos===false ) {
-    $this->_renderer = $this->_default_renderer;
-  } elseif ( $pos==0 ) {
-    $this->_renderer = 'parent';
-    $file = substr($file, 1);
-  } else {
-    $this->_renderer = substr($file, 0, $pos);
-    $file = substr($file, $pos + 1);
-  }
+	// first extract the renderer, if any
+	$pos = strpos($file, ':');
+	if ( $pos===false ) {
+		$this->_renderer = $this->_default_renderer;
+	} elseif ( $pos==0 ) {
+		$this->_renderer = 'parent';
+		$file = substr($file, 1);
+	} else {
+		$this->_renderer = substr($file, 0, $pos);
+		$file = substr($file, $pos + 1);
+	}
 
-  // allow the parent method to do it its own way
-  if ( $this->_renderer=='parent' ) {
-    return parent::set_filename($file);
-  }
+	// allow the parent method to do it its own way
+	if ( $this->_renderer=='parent' ) {
+		return parent::set_filename($file);
+	}
 
-  // REVISIT we should implement this in the renderer
-  $this->_set_filename($file);
+	// REVISIT we should implement this in the renderer
+	$this->_set_filename($file);
 
 }
 
 public function _set_filename($file) {
 
-  // work out the extension and find the template file
-  if ( array_key_exists($this->_renderer, $this->_config['extensions']) ) {
-    $ext = $this->_config['extensions'][$this->_renderer];
-    if ( $ext===true ) {
-      // does not use template files
-      $path = true;
-    } elseif ( ($path = Kohana::find_file('views', $file, $ext)) === false ) {
-      throw new Kohana_View_Exception('The requested view file :file.:ext could not be found', array(
-        ':file' => $file, ':ext' => $ext,
-      ));
-    }
-  } else { 
-    throw new Kohana_View_Exception('There is no extension set for the :renderer renderer',
-      array(':renderer' => $this->_renderer));
-  }
+	// work out the extension and find the template file
+	if ( array_key_exists($this->_renderer, $this->_config['extensions']) ) {
+		$ext = $this->_config['extensions'][$this->_renderer];
+		if ( $ext===true ) {
+			// does not use template files
+			$path = true;
+		} elseif ( ($path = Kohana::find_file('views', $file, $ext)) === false ) {
+			throw new Kohana_View_Exception('The requested view file :file.:ext could not be found', array(
+				':file' => $file, ':ext' => $ext,
+			));
+		}
+	} else {
+		throw new Kohana_View_Exception('There is no extension set for the :renderer renderer',
+			array(':renderer' => $this->_renderer));
+	}
 
-  // Store the file path locally
-  $this->_file = $path;
+	// Store the file path locally
+	$this->_file = $path;
 }
 
 
@@ -104,19 +104,19 @@ public function _set_filename($file) {
  * @return   string
  */
 public function render($file = null, array $options=array()) {
-  if ( $this->_renderer=='parent' ) {
-    return parent::render($file);
-  }
+	if ( $this->_renderer=='parent' ) {
+		return parent::render($file);
+	}
 
-  if ($file!==null) {
-    $this->set_filename($file);
-  }
+	if ($file!==null) {
+		$this->set_filename($file);
+	}
 
-  if (empty($this->_file)) {
-    throw new Kohana_View_Exception('You must set the file to use within your view before rendering');
-  }
-  $method = 'Render_'.ucfirst($this->_renderer).'::render';
-  return call_user_func($method, $this->_data, View::$_global_data, $this->_file, $options);
+	if (empty($this->_file)) {
+		throw new Kohana_View_Exception('You must set the file to use within your view before rendering');
+	}
+	$method = 'Render_'.ucfirst($this->_renderer).'::render';
+	return call_user_func($method, $this->_data, View::$_global_data, $this->_file, $options);
 }
 
 } // End View

@@ -21,14 +21,14 @@
  */
 function smarty_block_report_detail($params, $content, &$smarty, &$repeat)
 {
-    $_parent_params =& smarty_get_parent_plugin_params($smarty, 'report');
+	$_parent_params =& smarty_get_parent_plugin_params($smarty, 'report');
 
-    if (!is_null($content)) {
-        /* handle block close tag */
-        // add content to {report} tag's current buffer
-        $_parent_params['report']['buffer'] .= $content;
-    }
-    return;
+	if (!is_null($content)) {
+		/* handle block close tag */
+		// add content to {report} tag's current buffer
+		$_parent_params['report']['buffer'] .= $content;
+	}
+	return;
 }
 
 

@@ -17,20 +17,20 @@
  * @return string  The translation (and substitution) of the string
  */
 function smarty_function___($params, &$smarty) {
-  $string = $values = $lang = null;
-  foreach ( $params as $key => $val ) {
-    if ( $key == 't' ) {
-      $string = $val;
-    } elseif ( $key == 'lang' ) {
-      $lang = $val;
-    } else {
-      $values[":$key"] = $val;
-    }
-  }
+	$string = $values = $lang = null;
+	foreach ( $params as $key => $val ) {
+		if ( $key == 't' ) {
+			$string = $val;
+		} elseif ( $key == 'lang' ) {
+			$lang = $val;
+		} else {
+			$values[":$key"] = $val;
+		}
+	}
 
-  if ( $lang===null ) {
-    return __(arr::get($params, 't'), $values);
-  } else {
-    return __(arr::get($params, 't'), $values, $lang);
-  }
+	if ( $lang===null ) {
+		return __(arr::get($params, 't'), $values);
+	} else {
+		return __(arr::get($params, 't'), $values, $lang);
+	}
 }

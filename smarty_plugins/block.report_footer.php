@@ -24,35 +24,35 @@
  */
 function smarty_block_report_footer($params, $content, &$smarty, &$repeat)
 {
-    $_parent_params =& smarty_get_parent_plugin_params($smarty, 'report');
+	$_parent_params =& smarty_get_parent_plugin_params($smarty, 'report');
 
-    if (is_null($content)) {
-        /* handle block open tag */
-        if (!array_key_exists('group', $params)) {
-           // report footer
-            if ($_parent_params['report']['record']['last']) {
-                foreach ($_parent_params['report']['stats'] as $stat_type=>$stat) {
-                    $smarty->assign($stat_type, $stat);
-                }
-            }
+	if (is_null($content)) {
+		/* handle block open tag */
+		if (!array_key_exists('group', $params)) {
+		   // report footer
+			if ($_parent_params['report']['record']['last']) {
+				foreach ($_parent_params['report']['stats'] as $stat_type=>$stat) {
+					$smarty->assign($stat_type, $stat);
+				}
+			}
 
-        } else {
-            // group footer
-            if (!in_array($params['group'], $_parent_params['report']['record']['fields'], true)) {
-                $smarty->trigger_error("{report_footer}: given group '{$params['group']}' does not have a corresponding record field in given recordset.", E_USER_ERROR);
-            }
-            if ($_parent_params['report']['group'][$params['group']]['last']) {
-                foreach ($_parent_params['report']['group'][$params['group']]['stats'] as $stat_type=>$stat) {
-                    $smarty->assign($stat_type, $stat);
-                }
-            }
-        }
+		} else {
+			// group footer
+			if (!in_array($params['group'], $_parent_params['report']['record']['fields'], true)) {
+				$smarty->trigger_error("{report_footer}: given group '{$params['group']}' does not have a corresponding record field in given recordset.", E_USER_ERROR);
+			}
+			if ($_parent_params['report']['group'][$params['group']]['last']) {
+				foreach ($_parent_params['report']['group'][$params['group']]['stats'] as $stat_type=>$stat) {
+					$smarty->assign($stat_type, $stat);
+				}
+			}
+		}
 
-    } else {
-        /* handle block close tag */
-        if ($_parent_params['report']['record']['last'] || $_parent_params['report']['group'][$params['group']]['last']) {
-            $_parent_params['report']['buffer'] .= $content;
-        }
-    }
-    return;
+	} else {
+		/* handle block close tag */
+		if ($_parent_params['report']['record']['last'] || $_parent_params['report']['group'][$params['group']]['last']) {
+			$_parent_params['report']['buffer'] .= $content;
+		}
+	}
+	return;
 }

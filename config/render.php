@@ -2,13 +2,13 @@
 
 return array (
 
-  // template renderers and their filename extensions
-  'extensions' => array(
-    'smarty' => 'tpl',
-    'text' => true, // enabled, but doesn't use templates
-    'json' => true, // enabled, but doesn't use templates
-  ),
+	// template renderers and their filename extensions
+	'extensions' => array(
+		'smarty' => 'tpl',
+		'text' => true, // enabled, but doesn't use templates
+		'json' => true, // enabled, but doesn't use templates
+	),
 
-  'expose' => array('title', 'content'),
+	'expose' => array('title', 'content'),
 
 );
