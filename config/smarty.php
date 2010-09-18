@@ -35,7 +35,7 @@ return array (
 		'plugins_dir'     =>  array(
 			APPPATH.'smarty_plugins/',
 			MODPATH.'smarty/smarty_plugins/',
-			'plugins/',
+			MODPATH.'smarty/thirdparty/smarty/plugins/',
 		),
 
 		// If you want to use smarty config files, put them in this place
