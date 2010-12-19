@@ -124,8 +124,8 @@ class View extends Kohana_View {
 		if (empty($this->_file))
 			throw new Kohana_View_Exception('You must set the file to use within your view before rendering');
 		
-		$method = 'Render_'.ucfirst($this->_renderer).'::render';
-		return call_user_func($method, $this->_data, View::$_global_data, $this->_file, $options);
+		$class = new ReflectionClass('Render_'.ucfirst($this->_renderer));
+		return $class->getMethod('render')->invoke(null, $this->_data, View::$_global_data, $this->_file, $options); 
 	}
 
 } // End View
