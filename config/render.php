@@ -5,6 +5,7 @@ return array (
 	// template renderers and their filename extensions
 	'extensions' => array(
 		'smarty' => 'tpl',
+    	'twig' => 'twig',
 		'text' => true, // enabled, but doesn't use templates
 		'json' => true, // enabled, but doesn't use templates
 	),
