@@ -5,7 +5,7 @@ class Render_Text extends Render {
 public static function render(array $vars=array(), array $globals=array(), $file=false, array $options=array()) {
 
 	if ( empty($vars['_no_header']) ) {
-		Request::instance()->headers['Content-Type'] = 'text/plain; charset='.Kohana::$charset;
+		Request::current()->headers['Content-Type'] = 'text/plain; charset='.Kohana::$charset;
 		$result = $vars['content'];
 
 	} elseif ( empty($vars['_plain']) ) {

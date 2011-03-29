@@ -22,7 +22,7 @@ public static function render(array $vars=array(), array $globals=array(), $file
 	if ( empty($vars['_no_header'])
 	&& ( !empty(Request::$is_ajax) || !empty($vars['_force_header']) ) ) {
 		// only send json if it is an XMLHttpRequest (subject to overrides)
-		Request::instance()->headers['Content-Type'] = 'application/json';
+		Request::current()->headers['Content-Type'] = 'application/json';
 		$result = json_encode($data);
 
 	} elseif ( empty($vars['_plain']) ) {
