@@ -12,7 +12,7 @@
 Summary:        Templating engine for Kohana 3
 Name:           kohana-module-smarty
 Version:        3.2.4
-Release:        1.%{svnrev}%{dist}
+Release:        2.%{svnrev}%{dist}
 Group:          %{section}
 License:        BSD
 URL:            http://github.com/guss77/kohana-module-smarty
@@ -64,6 +64,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/kohana/modules/smarty
 
 %changelog
+* Sun Mar 29 2011 Oded Arbel <oded@geek.co.il>  0:3.2.4-2tbl
+- Update module to work with Kohana 3.1
+
 * Sun Dec 19 2010 Oded Arbel <oded@geek.co.il>  0:3.2.4-1tbl
 - rebase on personal fork as preperation for submitting upstream
 
