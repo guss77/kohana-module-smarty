@@ -32,7 +32,7 @@ class View extends Kohana_View {
 	{
 		$token = Kohana::$profiling ? Profiler::start('renderer', 'new kohana view') : false;
 
-		$this->_config = Kohana::config('render');
+		$this->_config = Kohana::$config->('render');
 
 		parent::__construct($file, $data);
 		$token ? Profiler::stop($token) : null;
